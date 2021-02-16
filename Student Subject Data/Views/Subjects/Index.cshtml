@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div>
+    <div class="form-group row">
+        <div class="col-6">
+            <h2 class="text-info">Subject List</h2>
+        </div>
+        <div class="col-3 offset-3">
+            <a class="nav-link btn btn-info form-control text-white" asp-area="" asp-controller="Subjects" asp-action="Create">Add New Data</a>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Subject Name
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

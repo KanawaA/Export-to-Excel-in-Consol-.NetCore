@@ -1,0 +1,56 @@
+﻿@model WebApplication.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2 class="text-info">Create New Enrollment</h2>
+<br>
+
+<div class="border container" style="padding:30px;">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="StudentId" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="SubjectId" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.SubjectId"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="TeacherName" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="TeacherName" class="form-control" />
+                </div>
+                <span asp-validation-for="TeacherName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-2 offset-3">
+                    <input type="submit" value="Create" class="btn btn-primary form-control" />
+                </div>
+                <div class="col-2">
+                    <a asp-action="Index" class="nav-link btn btn-success form-control">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

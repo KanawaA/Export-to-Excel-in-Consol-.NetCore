@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApplication.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div>
+    <div class="form-group row">
+        <div class="col-6">
+            <h2 class="text-info">Subject List</h2>
+        </div>
+        <div class="col-3 offset-3">
+            <a class="nav-link btn btn-info form-control text-white" asp-area="" asp-controller="Enrollments" asp-action="Create">Add New Data</a>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Student
+            </th>
+            <th>
+                Subject
+            </th>
+            <th>
+                Teacher Name
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.student.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("ExportToExcel","Enrollments")">Export</a>
